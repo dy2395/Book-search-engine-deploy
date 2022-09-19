@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Container, Col, Button, Card,CardImg,CardBody,CardTitle,CardText, CardColumns} from 'reactstrap';
+import { Row, Container, Col, Button, Card,CardImg,CardBody,CardTitle,CardText} from 'reactstrap';
 import Form from 'react-bootstrap/Form'
 import { searchGoogle } from '../utils/API';
 
@@ -66,16 +66,17 @@ const SearchBooks = () => {
         </Container>
       </Row>
 
-      <Row fluid="ture">
+      
       <Container>
         <h2>
           {searchedBooks.length
             ? `Viewing ${searchedBooks.length} results:`
             : 'Search for a book to begin'}
         </h2>
-        <CardColumns>
+        <Row fluid="ture">
           {searchedBooks.map((book) => {
             return (
+              <Col md={4}>
               <Card key={book.bookId} border='dark'>
                 {book.image ? (
                   <CardImg src={book.image} alt={`The cover for ${book.title}`} top />
@@ -86,11 +87,11 @@ const SearchBooks = () => {
                   <CardText>{book.description}</CardText>
                 </CardBody>
               </Card>
+              </Col>
             )
           })}
-        </CardColumns>
+        </Row>
       </Container>
-      </Row>
     </div>
   );
 };
