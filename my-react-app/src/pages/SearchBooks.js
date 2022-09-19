@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Row, Container, Col, Form, Button, Card, CardColumns } from 'reactstrap';
+import { Row, Container, Col, Button, Card,CardImg,CardBody,CardTitle,CardText, CardColumns} from 'reactstrap';
+import Form from 'react-bootstrap/Form'
 import { searchGoogle } from '../utils/API';
 
 const SearchBooks = () => {
@@ -40,11 +41,11 @@ const SearchBooks = () => {
 
   return (
     <div>
-      <Row fluid className='text-light bg-dark'>
+      <Row fluid="ture" className='text-light bg-dark'>
         <Container>
           <h1>Search for Books</h1>
           <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
+            <Form.Group>
               <Col xs={12} md={8}>
                 <Form.Control
                   name='searchInput'
@@ -60,11 +61,12 @@ const SearchBooks = () => {
                   Submit Search
                 </Button>
               </Col>
-            </Form.Row>
+            </Form.Group>
           </Form>
         </Container>
       </Row>
 
+      <Row fluid="ture">
       <Container>
         <h2>
           {searchedBooks.length
@@ -76,18 +78,19 @@ const SearchBooks = () => {
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? (
-                  <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
+                  <CardImg src={book.image} alt={`The cover for ${book.title}`} top />
                 ) : null}
-                <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
+                <CardBody>
+                  <CardTitle>{book.title}</CardTitle>
                   <p className='small'>Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
-                </Card.Body>
+                  <CardText>{book.description}</CardText>
+                </CardBody>
               </Card>
             )
           })}
         </CardColumns>
       </Container>
+      </Row>
     </div>
   );
 };
